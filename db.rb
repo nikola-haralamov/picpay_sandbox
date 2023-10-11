@@ -1,11 +1,16 @@
 class DB
   DATABASES = {
-    'payments': 1,
-    'refunds': 2,
+    accounts: 0,
+    payments: 1,
+    refunds: 2,
   }.freeze
 
   def initialize(db)
-    @db = Redis.new(host: ENV['REDIS_HOST'], port: ENV['REDIS_PORT'].to_i, db: DATABASES[db])
+    @db = Redis.new(
+      host: ENV['REDIS_HOST'].to_s,
+      port: ENV['REDIS_PORT'].to_i,
+      db:DATABASES[db.to_sym],
+    )
   end
 
   def list
@@ -18,15 +23,23 @@ class DB
   end
 
   def has(key)
-    @db.exists(key)
+    @db.exists?(key)
   end
 
   def get(key)
-    @db.get(key)
+    unserialize(@db.get(key))
   end
 
-  def set(key, value)
-    @db.set(key, serialize(value))
+  def create(key, value)
+    @db.set(key, serialize(value), nx: true)
+  end
+
+  def update(key, value)
+    @db.set(key, serialize(value), xx: true)
+  end
+
+  def persist(key)
+    @db.persist(key)
   end
 
   def delete(key)
@@ -42,5 +55,4 @@ class DB
   def unserialize(object)
     JSON.parse(object, symbolize_names: true)
   end
-
 end
