@@ -4,11 +4,6 @@ class App < Roda
   plugin :all_verbs
 
   route do |r|
-    # # /
-    # r.get '' do
-    #   {}
-    # end
-
     # /payments
     @payments = DB.new('payments')
 
