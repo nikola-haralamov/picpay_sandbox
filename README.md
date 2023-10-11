@@ -5,11 +5,11 @@ RODA server for recreate sandbox for PicPay API
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add picpay_sandbox
+    $ bundle install
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Start server:
 
-    $ gem install picpay_sandbox
+    $ rackup
 
 ## Contributing
 

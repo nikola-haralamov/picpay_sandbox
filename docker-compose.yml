@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  redis:
+    container_name: roda_redis_container
+    image: redis:latest
+    ports:
+      - "127.0.0.1:6379:6379"
