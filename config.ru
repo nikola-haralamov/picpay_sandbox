@@ -1,8 +1,10 @@
-require "dotenv"
-require "redis"
-require "roda"
 require 'json'
-require "./db.rb"
-require "./app.rb"
+require 'dotenv'
+require 'redis'
+require 'roda'
+require './db.rb'
+require './app.rb'
+
+Dotenv.load('./.env')
 
 run App.freeze.app

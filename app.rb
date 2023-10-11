@@ -1,10 +1,15 @@
 class App < Roda
+  plugin :head
   plugin :json, classes: [Array, Hash], content_type: 'application/json'
   plugin :json_parser
   plugin :all_verbs
 
   route do |r|
     @payments = DB.new('payments')
+
+    r.get do
+      {}
+    end
 
     r.get 'payments' do
       @payments.list

@@ -1,7 +1,3 @@
-require 'dotenv'
-
-Dotenv.load('./.env')
-
 class DB
   DATABASES = {
     'payments': 1,
