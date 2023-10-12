@@ -9,6 +9,7 @@ Install the gem and add to the application's Gemfile by executing:
 
 Start server:
 
+    $ docker-compose up -d
     $ rackup
 
 ## Contributing
