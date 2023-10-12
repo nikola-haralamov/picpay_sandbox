@@ -27,9 +27,9 @@ class DB
   end
 
   def get(key)
-    pp @db.get(key)
+    collection = @db.get(key)
 
-    @db.get(key)
+    unserialize(collection) unless collection.nil?
   end
 
   def create(key, value)
