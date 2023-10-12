@@ -1,10 +1,5 @@
-class App < Roda
-  plugin :json, classes: [Array, Hash], content_type: 'application/json'
-  plugin :json_parser
-  plugin :all_verbs
-
+class Payments < Base
   route do |r|
-    # /payments
     @payments = DB.new('payments')
 
     r.get 'payments' do
@@ -13,15 +8,18 @@ class App < Roda
 
     r.get 'payment', String do |id|
       payment = @payments.get(id)
-      payment.store(:id, id)
 
+      return { error: 'Invalid ID.' } if payment.nil?
+
+      payment.store(:id, id)
       payment
     end
 
-    r.post 'payment', String do |id|
+    r.post 'payment' do
       payment = JSON.parse(request.body.read, symbolize_names: true)
+      id = SecureRandom.uuid
 
-      return { error: 'Something was wrong.' } unless @payments.create(id, payment) && @payments.persist(id)
+      return { error: 'Something was wrong.' } unless @payments.create(id, payment)
 
       payment.store(:id, id)
       payment
@@ -41,7 +39,5 @@ class App < Roda
 
       {}
     end
-    #END /payments
-
   end
 end

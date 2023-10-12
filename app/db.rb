@@ -27,7 +27,9 @@ class DB
   end
 
   def get(key)
-    unserialize(@db.get(key))
+    pp @db.get(key)
+
+    @db.get(key)
   end
 
   def create(key, value)

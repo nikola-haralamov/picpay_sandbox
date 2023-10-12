@@ -1,10 +1,15 @@
+require 'securerandom'
 require 'json'
 require 'dotenv'
 require 'redis'
 require 'roda'
-require './db.rb'
-require './app.rb'
+require './app/db.rb'
 
 Dotenv.load('./.env')
 
-run App.freeze.app
+Dir.glob('./app/controllers/*.rb', base: __dir__).each do |filepath|
+  require_relative filepath
+  unless File.basename(filepath, ".*") == 'base'
+    run eval(File.basename(filepath, ".*").capitalize).freeze.app
+  end
+end
