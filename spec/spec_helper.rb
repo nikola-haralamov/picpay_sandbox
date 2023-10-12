@@ -4,7 +4,6 @@ require 'dotenv'
 require 'net/http'
 require 'uri'
 require 'json'
-require 'picpay_sandbox'
 require 'support/factory_bot'
 require 'byebug'
 

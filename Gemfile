@@ -11,5 +11,6 @@ gem 'redis', '~> 5.0.7'
 
 group :development, :test do
   gem 'rspec-roda', '~> 0.2.2'
+  gem "factory_bot", "~> 6.2"
   gem 'pry-byebug', '~> 3.10.1'
 end
