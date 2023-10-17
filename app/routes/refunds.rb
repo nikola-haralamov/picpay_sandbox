@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 module Routes
   class Refunds < Base
     route do |r|

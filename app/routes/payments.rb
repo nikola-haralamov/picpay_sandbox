@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 module Routes
   class Payments < Base
     route do |r|

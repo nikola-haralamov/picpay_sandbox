@@ -8,6 +8,8 @@ gem 'dotenv', '~> 2.8.1'
 gem 'rack', '~> 2.2.8'
 gem 'roda', '~> 3.72.0'
 gem 'redis', '~> 5.0.7'
+gem 'jwt', '~> 2.7.1'
+gem 'oauth2', '~> 2.0.9'
 
 group :development, :test do
   gem 'rspec-roda', '~> 0.2.2'
